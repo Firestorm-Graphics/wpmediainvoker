@@ -42,6 +42,9 @@ function wp_media_invoker( callback )  {
 	this.set_attr_name = function( attr_name ) {
 		__this__.attr_name = attr_name;	
 	}
+	this.set_attr_selector = function( attr_selector) {
+		__this__.tb_link_class = attr_selector;
+	}
 	
 	/**
 	 * When user click the media upload link, this script automatically detects the creation of the iframe and then create .load javascript event
@@ -181,10 +184,12 @@ function wp_media_invoker( callback )  {
 	
 };	
   $.fn.attachMediaUploader = function( attr_name, callback) {
+  	var selector = this.selector;
     this.mum = new wp_media_invoker( function( url, att_value) {
     	callback( url, att_value);
     });
     this.mum.set_attr_name( attr_name );
+    this.mum.set_attr_selector(selector);
   };
 })( jQuery );
 
